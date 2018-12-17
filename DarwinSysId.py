@@ -50,7 +50,11 @@ class DarwinEnv():
 				if self.skel.joints[joint].has_position_limit(dof):
 					self.skel.joints[joint].set_position_limit_enforced(True)
 
-
+		for body in self.skel.bodynodes:
+			if body.name == "base_link":
+				body.set_mass(0.001)
+			if body.name == "MP_PMDCAMBOARD":
+				body.set_mass(0.001)
 
 	def SetPIDgains(self,gains):
 		self.kp = gains[0]
